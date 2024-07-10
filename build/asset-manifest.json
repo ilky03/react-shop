@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.b64791e3.css",
+    "main.js": "/static/js/main.31c24a93.js",
+    "static/media/np_logo.png": "/static/media/np_logo.7ae5d7aa1250db450dba.png",
+    "static/media/shipping.svg": "/static/media/shipping.b330643034dfc69eb8291f592089c536.svg",
+    "static/media/add.svg": "/static/media/add.643a59d0b8f768ef37c305d5ff55e909.svg",
+    "static/media/add_black.svg": "/static/media/add_black.ea9e5c8119fc627de6d19e481687fa9f.svg",
+    "static/media/star.svg": "/static/media/star.378feb782c35cccef822213798c71625.svg",
+    "static/media/edit.svg": "/static/media/edit.326243cfe3197df6ad88a018d9b2a04f.svg",
+    "index.html": "/index.html",
+    "static/media/edit_thin.svg": "/static/media/edit_thin.6153188ed9991373ff03ab4152052b11.svg",
+    "static/media/upload.svg": "/static/media/upload.28c1bd5f25142dabe3c17db39eae2b64.svg",
+    "static/media/delete.svg": "/static/media/delete.fa997255ecf2cb927474a2c4ade242f9.svg",
+    "static/media/image.svg": "/static/media/image.6374caa6a8f8e48878a1c8ff771159ac.svg",
+    "static/media/bolt.svg": "/static/media/bolt.0c0a0c28945990599fff.svg",
+    "main.b64791e3.css.map": "/static/css/main.b64791e3.css.map",
+    "main.31c24a93.js.map": "/static/js/main.31c24a93.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b64791e3.css",
+    "static/js/main.31c24a93.js"
+  ]
+}

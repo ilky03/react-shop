@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "flakfdk3lff32",
+    "public": "build",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
