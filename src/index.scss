@@ -1,0 +1,131 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+$main-color: #020509;
+$bg-color: #f2f4f6;
+$accent-color: #ffce38;
+$secondary-accent-color: #ff0038;
+$third-accent-color: #00cffa;
+$modal-bg-color: #02050956;
+
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  color: $main-color;
+  min-height: 100vh;
+}
+
+header, main {
+    display: grid;
+    place-content: center;
+}
+
+button {
+  border-radius: 10px;
+  border: none;
+  padding: 10px;
+  background: none;
+  // background-color: $bg-color;
+  font-family: "Roboto", sans-serif;
+  &:hover {
+      cursor: pointer;
+  }
+}
+
+button[disabled] {
+  cursor: not-allowed;
+  background-color: $bg-color;
+}
+
+ul {
+  list-style: none;
+}
+
+h2 {
+  font-size: 30px;
+  margin: 20px 0;
+}
+
+a {
+  text-decoration: none;
+  color: $main-color;
+}
+
+input {
+  font-family: "Roboto", sans-serif;
+}
+
+input:focus {
+  outline: none;
+}
+
+.hide {
+  display: none;
+}
+
+.relative {
+  position: relative;
+}
+
+.container {
+  width: 80vw;
+}
+
+.grid-center {
+  display: grid;
+  place-content: center;
+}
+
+.up-btn {
+  padding: 10px;
+  border-radius: 5px;
+  color: #fff;
+  background-color: $third-accent-color;
+  position: fixed;
+  bottom: 75px;
+  font-weight: 500;
+  right: 10px;
+  z-index: 3;
+}
+
+.skeleton-wrapper {
+  overflow: hidden;
+  position: relative;
+  border-radius: 10px;
+}
+
+.skeleton {
+  background: linear-gradient(90deg, rgba(200,203,205,1) 0%, rgba(229,230,231,1) 48%, rgba(242,244,246,1) 100%);
+  width: 500%;
+  height: 100%;
+  animation: skeleton 2.5s infinite;
+  position: absolute;
+  top: 0;
+  left: -100%;
+}
+
+@keyframes skeleton {
+  0% {
+    transform: translateX(0);
+  }
+  50% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media screen and (max-width: 1200px) {
+    .container {
+        width: 100vw;
+        padding: 20px;
+    }
+}

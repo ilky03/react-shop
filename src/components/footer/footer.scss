@@ -1,0 +1,58 @@
+@import '../../index.scss';
+
+footer {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    background-color: $bg-color;
+    padding: 10px;
+    margin-top: 50px;
+    min-height: 200px;
+    flex-wrap: wrap;
+    padding-bottom: 70px;
+}
+
+.footer {
+    >.container {
+        display: flex;
+        justify-content: space-between;
+        gap: 20px;
+        flex-wrap: wrap;
+    }
+    h5 {
+        opacity: .5;
+        margin: 10px 0;
+    }
+
+    &__socials {
+        img {
+            width: 25px;
+            opacity: .5;
+            margin: 10px;
+        }
+        a:hover {
+            img {
+                opacity: 1;
+            }
+        }
+    }
+
+    &__contacts {
+        p {
+            opacity: .8;
+            font-weight: 600;
+            padding: 5px 0;
+        }
+    }
+
+    &__nav {
+        li {
+            opacity: .8;
+            margin: 5px 0;
+            &:hover {
+                opacity: 1;
+                cursor: pointer;
+            }
+        }
+    }
+}

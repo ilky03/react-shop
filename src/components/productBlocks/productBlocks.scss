@@ -1,0 +1,209 @@
+@import '../../index.scss';
+
+.product-blocks {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    position: relative;
+    &__show {
+        position: absolute;
+        display: flex;
+        align-items: center;
+        bottom: -40px;
+        right: 10px;
+        padding: 10px;
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        font-weight: 500;
+        border: 1px solid $bg-color;
+        border-top: none !important;   
+        color: $main-color;
+        &:hover {
+            cursor: pointer;
+            background-color: $bg-color;
+        }
+        img {
+            height: 20px;
+        }
+    }
+}
+
+.product-block {
+    padding: 10px;
+    border-radius: 10px;
+    width: 100%;
+    height: 315px;
+    text-align: center;
+    position: relative;
+    border: 1px solid $bg-color;
+    transition: .3s;
+    &:hover {
+        // background-color: $bg-color;
+        transform: translateY(-5px);
+        box-shadow: 0px 0px 30px 0px rgba(0,0,0,0.1);
+        cursor: pointer;
+    }
+
+    p {
+        text-align: left;
+    }
+    &__img {
+        width: 100%;
+        height: 200px;
+        object-fit: contain;
+    }
+
+    &__price {
+        font-weight: 600;
+        font-size: 20px;
+        position: relative;
+        color: $secondary-accent-color;
+        &_discount {
+            position: absolute;
+            min-width: 80px;
+            top: -20px;
+            font-size: 15px;
+            text-decoration: line-through;
+            color: #21212186;
+        }
+        &_black, &_pale {
+            font-size: 20px;
+        }
+        &_pale{
+            opacity: .5;
+        }
+        &_missing {
+            position: absolute;
+            width: 100%;
+            border-radius: 5px;
+            padding: 10px;
+            text-align: center;
+            top: -170px;
+            text-transform: uppercase;
+            border:3px dashed $secondary-accent-color;
+            color: $secondary-accent-color;
+            font-weight: 900;
+            transform: rotate(-30deg);
+        }
+    }
+
+    &__header {
+        position: relative;
+    }
+
+    &__discount-plate {
+        position: absolute;
+        top: 0;
+        padding: 5px;
+        border-radius: 10px;
+        background-color: $accent-color;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    &__wish-plate {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0;
+        img {
+            width: 35px;
+        }
+        &:hover {
+            opacity: .5;
+        }
+    }
+
+    &__wish-plate_animate {
+        animation: wishlist 0.5s ease-in-out;
+    }
+
+    &__new-plate {
+        background-color: $third-accent-color;
+        position: absolute;
+        top: 0;
+        color: #fff;
+        padding: 5px;
+        border-radius: 10px;
+        font-weight: bold;
+    }
+
+    &__top-plate {
+        position: absolute;
+        top: -22px;
+        left: 0;
+        transform: rotate(-30deg);
+        background-color: $secondary-accent-color;
+        color: #fff;
+        font-weight: 600;
+        text-transform: uppercase;
+        padding: 2px;
+        border-radius: 2px;
+        img {
+            width: 35px;
+        }
+    }
+
+    &__bottom {
+        position: absolute;
+        bottom: 10px;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        margin-top: 10px;
+        width: 90%;
+        &_check {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 20px;
+        }
+    }
+
+    &__buy-btn {
+        background: none;
+        background-color: $accent-color;
+        position: relative;
+        img {
+            filter: invert(1);
+        }
+        &:hover {
+            background-color: $accent-color;
+        }
+        &:disabled {
+            background: none;
+            cursor: not-allowed;
+            background-color: $bg-color;
+            img {
+                opacity: .5;
+                filter: invert(0);
+            }
+        }
+        &::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(255, 255, 255, 0.5); /* Напівпрозорий білий */
+            opacity: 0;
+            // transition: opacity 0.3s ease;
+          }
+          &:hover::after {
+            opacity: 1;
+          }
+    }
+}
+
+@keyframes wishlist {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
+}

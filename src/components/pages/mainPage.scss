@@ -1,0 +1,18 @@
+.main {
+        &__banner {
+                width: 100%;
+                min-height: 40vh;
+                border-radius: 10px;
+                margin-bottom: 20px;
+                img {
+                        border-radius: 10px;
+                        object-fit: cover;
+                        width: 100%;
+                }
+        }
+        &__block {
+                h2 {
+                        margin-top: 40px;
+                }
+        }
+}
