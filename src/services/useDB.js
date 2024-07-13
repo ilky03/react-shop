@@ -13,6 +13,8 @@ import {
     where
 } from "firebase/firestore";
 
+import { getAuth } from "firebase/auth";
+
 
 const firebaseConfig = {
     apiKey: "AIzaSyCJbuGgbGs26JGMUeDH5alX-BqX9AUv5Iw",
@@ -29,6 +31,7 @@ const app = initializeApp(firebaseConfig);
 
 const db = getFirestore(app);
 
+const auth = getAuth();
 // const UID = 'users/tjlRDGn2watycJT5gysj';
 export default function useDB() {
     const [isLoading, setIsLoading] = useState(false);
@@ -118,5 +121,5 @@ export default function useDB() {
         return result;
     }
 
-    return {get, create, update, deleteRecord, makeQuery, generateID, isLoading};
+    return {get, create, update, deleteRecord, makeQuery, generateID, auth, isLoading};
 }

@@ -21,7 +21,7 @@
     border-radius: 10px;
     padding: 20px;
     overflow: auto;
-    height: 80vh;
+    max-height: 80vh;
     :first-child {
         span {
             font-weight: 600;
@@ -43,7 +43,7 @@
         border-bottom: 3px solid $bg-color !important;
     }
     &__cancel-btn {
-        border: 3px solid $bg-color;
+        border: 1px solid $bg-color;
         margin-top: 20px;
         width: 100%;
         color: rgba($main-color, .5);
@@ -67,23 +67,24 @@
 }
     
 
-.modal-content::-webkit-scrollbar {
+.modal-window::-webkit-scrollbar, .modal-content::-webkit-scrollbar {
     width: 12px;
   }
   
-.modal-content::-webkit-scrollbar-thumb {
+  .modal-window::-webkit-scrollbar-thumb, .modal-content::-webkit-scrollbar-thumb {
     background-color: $main-color;
     border-radius: 6px;
-    border: 3px solid transparent;
+    border: 1px solid transparent;
     background-clip: content-box;
 }
 
-.modal-content::-webkit-scrollbar-track {
+.modal-window::-webkit-scrollbar-track, .modal-content::-webkit-scrollbar-track {
     background-color: $bg-color; 
     border-radius: 10px; 
 }
 
 .form-group {
+    min-width: 30vw;
     h3 {
         margin: 10px 0;
     }
@@ -97,9 +98,9 @@
             height: 30px;
         }
     }
-    input[type="text"] {
+    input[type="text"], input[type="password"] {
         border-radius: 5px;
-        border: 3px solid $bg-color;
+        border: 1px solid $bg-color;
         height: 40px;
     }
     input[type="radio"] {
@@ -112,13 +113,20 @@
         padding: 0 5px;
     }
 
+    .authMode-btn  {
+        width: 30px;
+        background: none;
+        border: 1px solid $bg-color;
+
+    }
+
     input:focus {
         outline: none;
-        border: 3px solid rgba($third-accent-color, .5);
+        border: 1px solid rgba($third-accent-color, .5);
     }
 
     input:checked + label {
-        border: 3px solid rgba($third-accent-color, .5);  
+        border: 1px solid rgba($third-accent-color, .5);  
     }
 
     .radio-btn-group {
@@ -127,7 +135,7 @@
         gap: 10px;
     }
     .radio-btn {
-        border: 3px solid $bg-color;
+        border: 1px solid $bg-color;
         border-radius: 5px;
         width: 120px;
         text-align: center;
@@ -139,7 +147,7 @@
     .payments {
         display: flex;
         align-items: center;
-        border: 3px solid $bg-color;
+        border: 1px solid $bg-color;
         padding: 5px;
         border-radius: 5px;
         &:hover {
@@ -159,7 +167,7 @@
 }
 
 .order {
-    border: 3px solid $bg-color;
+    border: 1px solid $bg-color;
     border-radius: 10px;
     margin: 20px 0;
     padding: 0 10px;
@@ -173,7 +181,7 @@
     }
     &__block {
         margin-top: 10px;
-        border: 3px solid $bg-color;
+        border: 1px solid $bg-color;
         padding: 10px;
         border-radius: 10px;
         width: 100%;
@@ -195,6 +203,24 @@
         font-weight: 500;
         opacity: .5;
         font-size: 15px;
+    }
+}
+
+.auth-form__mode-toggle {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 10px;
+    margin-top: 10px;
+    p {
+        font-size: 14px;
+        opacity: .5;
+    }
+
+    button {
+        border-bottom: 1px solid $main-color;    
+        padding: 0;
+        border-radius: 0;
     }
 }
 

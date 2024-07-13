@@ -237,7 +237,7 @@ function ProductPage() {
                                 {fastBuy && 
                                     <div className='product-page__fast-buy'>
                                         <form onSubmit={(e) => handleFastBuy(e, productData)}>
-                                            <input type="text" name="phone-number" placeholder='Номер телефону' />
+                                            <input type="text" name="phoneNumber" placeholder='Номер телефону' />
                                             <button disabled={isLoading}>Купити</button>
                                         </form>
                                     </div>
