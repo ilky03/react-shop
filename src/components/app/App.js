@@ -28,18 +28,22 @@ function App() {
 
   useEffect(() => {
     makeQuery('categories/').then(data => setCategories(data));
+    //eslint-disable-next-line
   }, [changedCategories]);
 
   useEffect(() => {
     makeQuery('products/').then(data => setProducts(data));
+    //eslint-disable-next-line
   }, [changedProducts]);
 
   useEffect(() => {
     makeQuery('orders/').then(data => setOrders(data));
+    //eslint-disable-next-line
   }, [changedOrders]);
 
   useEffect(() => {
     makeQuery('banners/').then(data => setBanners(data));
+    //eslint-disable-next-line
   }, [changedBanners]);
  
   const onCloseModal = () => {

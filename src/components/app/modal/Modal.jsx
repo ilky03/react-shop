@@ -343,24 +343,24 @@ function Modal({action, handleClose, categories, handleChanged, products, orders
                                             <div className="order-block">
                                                 <h3>Дані отримувача</h3>
                                                 <div className="order__details">
-                                                    <p><span>Номер телефону</span><br />{order['phone-number']}</p>
+                                                    <p><span>Номер телефону</span><br />{order.phoneNumber}</p>
                                                 </div>
                                             </div> : 
                                             <>
                                                 <div className="order-block">
                                                     <h3>Дані отримувача</h3>
                                                     <div className="order__details">
-                                                        <p><span>ПІБ</span><br />{order['last-name'] + ' ' + order['first-name'] + ' ' + order['middle-name'] }</p>
-                                                        <p><span>Номер телефону</span><br />{order['phone-number']}</p>
+                                                        <p><span>ПІБ</span><br />{order.lastName + ' ' + order.firstName+ ' ' + order.middleName }</p>
+                                                        <p><span>Номер телефону</span><br />{order.phoneNumber}</p>
                                                     </div>
                                                 </div>
                                                 <div className="order-block">
                                                     <h3>Деталі доставки</h3>
                                                     <div className="order__details">
-                                                        <p><span>Спосіб оплати</span><br /> {order['payment-method'] === 'card' ? 'Карта' : 'Готівка'}</p>
-                                                        <p><span>Поштове відділення</span><br /> {order['post_company'] === 'np' ? 'Нова пошта' : "Укрпошта"}</p>
-                                                        <p><span>Населений пункт</span><br /> {order['post-address']}</p>
-                                                        <p><span>Відділення</span><br /> {order['post-number']}</p>
+                                                        <p><span>Спосіб оплати</span><br /> {order.paymentMethod === 'card' ? 'Карта' : 'Готівка'}</p>
+                                                        <p><span>Поштове відділення</span><br /> {order.postCompany === 'np' ? 'Нова пошта' : "Укрпошта"}</p>
+                                                        <p><span>Населений пункт</span><br /> {order.postAddress}</p>
+                                                        <p><span>Відділення</span><br /> {order.postNumber}</p>
                                                     </div>
                                                 </div>
                                             </>}
@@ -633,44 +633,44 @@ function Modal({action, handleClose, categories, handleChanged, products, orders
                         }}>
                         <div className="form-group">
                             <h3>Отримувач</h3>
-                            <label htmlFor="last-name">Прізвище</label>
-                            <input type="text" name="last-name" id="last-name" defaultValue={order['last-name']} required />
+                            <label htmlFor="lastName">Прізвище</label>
+                            <input type="text" name="lastName" id="lastName" defaultValue={order.lastName} required />
 
-                            <label htmlFor="first-name">Ім'я</label>
-                            <input type="text" name="first-name" id="first-name" defaultValue={order['first-name']} required />
+                            <label htmlFor="firstName">Ім'я</label>
+                            <input type="text" name="firstName" id="firstName" defaultValue={order.firstName} required />
 
-                            <label htmlFor="middle-name">По батькові</label>
-                            <input type="text" name="middle-name" id="middle-name" defaultValue={order['middle-name']} required />
+                            <label htmlFor="middleName">По батькові</label>
+                            <input type="text" name="middleName" id="middleName" defaultValue={order.middleName} required />
 
-                            <label htmlFor="phone-number">Номер телефону</label>
-                            <input type="text" name="phone-number" id="phone-number" defaultValue={order['phone-number']} required />
+                            <label htmlFor="phoneNumber">Номер телефону</label>
+                            <input type="text" name="phoneNumber" id="phoneNumber" defaultValue={order.phoneNumber} required />
                         </div>
 
                         <div className="form-group">
                             <h3>Доставка</h3>
                             <div className="radio-btn-group">
-                                <input type="radio" id="post-company-1" name='post_company' value='np' defaultChecked={order['post_company'] === 'np'} />
-                                <label htmlFor='post-company-1' className='radio-btn'><img src={npLogo} alt="Нова пошта" /></label>
+                                <input type="radio" id="postCompany1" name='postCompany' value='np' defaultChecked={order.postCompany === 'np'} />
+                                <label htmlFor='postCompany1' className='radio-btn'><img src={npLogo} alt="Нова пошта" /></label>
 
-                                <input type="radio" id="post-company-2" name='post_company' value='urkp' defaultChecked={order['post_company'] === 'ukrp'} />
-                                <label htmlFor='post-company-2' className='radio-btn'><img src={ukrpLogo} alt="Укрпошта" /></label>
+                                <input type="radio" id="postCompany2" name='postCompany' value='urkp' defaultChecked={order.postCompany === 'ukrp'} />
+                                <label htmlFor='postCompany2' className='radio-btn'><img src={ukrpLogo} alt="Укрпошта" /></label>
 
                             </div>
 
-                            <label htmlFor="post-address">Населений пункт</label>
-                            <input type="text" name="post-address" id="post-address" defaultValue={order['post-address']} required />
+                            <label htmlFor="postAddress">Населений пункт</label>
+                            <input type="text" name="postAddress" id="postAddress" defaultValue={order.postAddress} required />
 
-                            <label htmlFor="post-number">Відділення</label>
-                            <input type="text" name="post-number" id="post-number" defaultValue={order['post-number']} required />
+                            <label htmlFor="postNumber">Відділення</label>
+                            <input type="text" name="postNumber" id="postNumber" defaultValue={order.postNumber} required />
                         </div>
 
                         <div className="form-group">
                             <h3>Оплата</h3>
                             <div className="radio-btn-group">
-                                <input type="radio" id="payment-method-1" name='payment-method' value='cash' defaultChecked={order['payment-method'] === 'cash'} />
-                                <label htmlFor="payment-method-1" className='payments'>Готівкою при отриманні</label>
-                                <input type="radio" id="payment-method-2" name='payment-method' value='card' defaultChecked={order['payment-method'] === 'card'} />
-                                <label htmlFor="payment-method-2" className='payments'>Банківська картка</label>
+                                <input type="radio" id="paymentMethod1" name='paymentMethod' value='cash' defaultChecked={order.paymentMethod === 'cash'} />
+                                <label htmlFor="paymentMethod1" className='payments'>Готівкою при отриманні</label>
+                                <input type="radio" id="paymentMethod2" name='paymentMethod' value='card' defaultChecked={order.paymentMethod === 'card'} />
+                                <label htmlFor="paymentMethod2" className='payments'>Банківська картка</label>
                             </div>
                         </div>
 
