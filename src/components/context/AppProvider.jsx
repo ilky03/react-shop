@@ -16,14 +16,24 @@ const AppProvider = ({ children }) => {
   const [banners, setBanners] = useState();
   const [windowWidth, setWindowWidth] = useState();
 
-  const { makeQuery, isLoading } = useDB();
+  const [profileData, setProfileData] = useState();
+
+  const { makeQuery, isLoading, get, auth } = useDB();
 
   useEffect(() => {
       makeQuery('banners/').then(data => setBanners(data));
       makeQuery('/products').then(data => setProductsData(data));
       makeQuery('/categories').then(data => setCategories(data));
+      auth.onAuthStateChanged(async (user) => {
+        try {
+          get(`users/${user.uid}`).then(data => setProfileData(data));
+        } catch(e) {
+        }
+
+     });
       //eslint-disable-next-line
   }, []);
+
   
   useEffect(() => {
     wishlist && localStorage.setItem('wishlist', wishlist.filter(wish => wish !== '').concat(','));
@@ -75,7 +85,7 @@ const AppProvider = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{ productsData, wishlist, shoppingCart, banners, categories, windowWidth, handleItemToggle, clearShoppingCart, handleClickUpBtn, isLoading }}>
+    <AppContext.Provider value={{ productsData, wishlist, shoppingCart, banners, categories, windowWidth, profileData, setProfileData, handleItemToggle, clearShoppingCart, handleClickUpBtn, isLoading }}>
       {children}
     </AppContext.Provider>
   );

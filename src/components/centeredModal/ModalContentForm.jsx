@@ -1,9 +1,14 @@
+import { useContext } from 'react';
+import { AppContext } from '../context/AppContext';
+
 import npLogo from '../../sources/order-modal/np_logo.png';
 import ukrpLogo from '../../sources/order-modal/ukrp_logo.png';
 
-function ModalContentForm({profileData}) {
+function ModalContentForm() {
 
-    const {lastName, firstName, middleName, phoneNumber, postCompany, postAddress, postNumber, paymentMethod} = {...profileData};
+    const { profileData } = useContext(AppContext);
+
+    const {lastName, firstName, middleName, phoneNumber, postCompany, postAddress, postNumber, paymentMethod, email} = {...profileData};
 
     return (
         <>
@@ -20,6 +25,9 @@ function ModalContentForm({profileData}) {
 
                 <label htmlFor="phoneNumber">Номер телефону</label>
                 <input type="text" name="phoneNumber" id="phoneNumber" defaultValue={phoneNumber} required />
+
+                <label htmlFor="email">Поштова адреса</label>
+                <input type="text" name="email" id="email" defaultValue={email} disabled={email} required />
             </div>
 
             <div className="form-group">

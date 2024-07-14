@@ -15,6 +15,7 @@ import {
 
 import { getAuth } from "firebase/auth";
 
+import { toast } from 'react-toastify';
 
 const firebaseConfig = {
     apiKey: "AIzaSyCJbuGgbGs26JGMUeDH5alX-BqX9AUv5Iw",
@@ -46,7 +47,7 @@ export default function useDB() {
                 data = response.data();
             }
         } catch (error) {
-            console.error("Error getting document:", error);
+            toast.error('От халепа... Сталася помилка :(')
         } finally {
             setIsLoading(false);
         }
@@ -59,7 +60,7 @@ export default function useDB() {
         try {
             await setDoc(path, data);
         } catch(e) {
-            console.error("Error creating document:", e);
+            toast.error('От халепа... Сталася помилка :(')
         } finally {
             setIsLoading(false);
         }
@@ -71,16 +72,16 @@ export default function useDB() {
         try {
             await updateDoc(path, data);
         } catch(e) {
-            console.error("Error updating document:", e);
+            toast.error('От халепа... Сталася помилка :(')
         } finally {
             setIsLoading(false);
         }
     }
 
-    async function makeQuery(url, id) {
+    async function makeQuery(url, id, customName = 'id') {
         let customQuery;
         if (id) {
-            customQuery = query(collection(db, url), where("id", "==", id));
+            customQuery = query(collection(db, url), where(customName, "==", id));
         } else {
             customQuery = query(collection(db, url));
         }
@@ -90,7 +91,7 @@ export default function useDB() {
             setIsLoading(true);
             querySnapshot = await getDocs(customQuery);
         } catch(e) {
-            console.log(e);
+            toast.error('От халепа... Сталася помилка :(')
         } finally {
             setIsLoading(false);
         }
@@ -105,7 +106,7 @@ export default function useDB() {
         try {
             await deleteDoc(path);
         } catch(e) {
-            console.error("Error deleting document:", e);
+            toast.error('От халепа... Сталася помилка :(')
         } finally {
             setIsLoading(false);
         }

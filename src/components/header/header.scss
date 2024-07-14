@@ -158,11 +158,10 @@ header > .container{
         opacity: .8;
     }
     li {
-        padding: 10px;
         display: flex;
         align-items: center;
         text-align: left;
-
+        padding: 10px;
         &:hover {
             background-color: $bg-color;
         }
@@ -171,8 +170,25 @@ header > .container{
             height: 20px;
             // width: 20px;
             margin-right: 10px;
+        }   
+    }
+
+    &__profile {
+        li {
+            padding: 0;
+            button {
+                padding: 10px;
+                width: 100%;
+                height: 100%;
+                background: none;
+                color: $main-color;
+                &:disabled {
+                    opacity: .5;
+                }
+            }
         }
     }
+
     h5 {
         margin: 5px 10px;
     }
@@ -429,9 +445,6 @@ header > .container{
             &_text {
                 display: none;
             }
-        }
-        &__lang-toggle {
-            display: none;
         }
         &__logo {
             display: none;

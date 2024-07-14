@@ -44,7 +44,7 @@ function Modal ({setState, state, elements, type, icon, handleOrderClick}) {
 
     return (
         <>
-            <div onClick={() => setState(!state)} style={{position: 'relative'}}>
+            <button onClick={() => setState(!state)} style={{position: 'relative'}}>
                 <div className={`header__${type} ${state ? "accent" : ""}`}>
                     <img src={icon} alt={type} />
                     <span className={`header__${type}_counter`}>{(selectedProducts && selectedProducts.length) || 0}</span>
@@ -121,7 +121,7 @@ function Modal ({setState, state, elements, type, icon, handleOrderClick}) {
                         }
                     </div>
                 }
-            </div>
+            </button>
 
         </>
     )

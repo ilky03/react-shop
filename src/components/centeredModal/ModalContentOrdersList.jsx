@@ -6,7 +6,7 @@ function ModalContentOrdersList({order}) {
         return format(date, 'dd.MM.yy HH:mm');
     };
 
-    const {lastName, firstName, middleName, phoneNumber, postCompany, postAddress, postNumber, paymentMethod} = {...order};
+    const {lastName, firstName, middleName, phoneNumber, email, postCompany, postAddress, postNumber, paymentMethod} = {...order};
     return (
         <li 
             key = {order.id} 
@@ -34,6 +34,7 @@ function ModalContentOrdersList({order}) {
                         <div className="order__details">
                             <p><span>ПІБ</span><br />{lastName + ' ' + firstName + ' ' + middleName }</p>
                             <p><span>Номер телефону</span><br />{phoneNumber}</p>
+                            <p><span>Поштова адреса</span><br />{email}</p>
                         </div>
                     </div>
                     <div className="order__block">
@@ -53,7 +54,7 @@ function ModalContentOrdersList({order}) {
                     {order['order'] && order['order'].map(({id, photoUrl, title, amount, price, isDiscount, discPrice, article}) => { 
                         return (
                             <li key={id} style={{position: "relative"}}>
-                                <span className='grid-center'><img src={photoUrl} alt={title} /></span>
+                                <div className='grid-center'><img src={photoUrl} alt={title} /></div>
                                 <p>{title}</p>
                                 <p>x{amount}</p>
                                 <p>{isDiscount ? amount * discPrice : amount * price} ₴</p>

@@ -111,6 +111,10 @@ input:focus {
   left: -100%;
 }
 
+.Toastify__toast {
+  bottom: 75px;
+}
+
 @keyframes skeleton {
   0% {
     transform: translateX(0);

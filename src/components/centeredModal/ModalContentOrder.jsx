@@ -3,12 +3,14 @@ import { useContext } from 'react';
 
 import { AppContext } from '../context/AppContext';
 
+import { toast } from 'react-toastify';
+
 import ModalContentForm from './ModalContentForm';
 
 import './centeredModal.scss';
 
-function ModalContentOrder({handleCloseWindow, productsToOrder, profileData}) {
-    const { clearShoppingCart, isLoading } = useContext(AppContext);
+function ModalContentOrder({handleCloseWindow, productsToOrder}) {
+    const { clearShoppingCart, profileData, isLoading } = useContext(AppContext);
     const { create, generateID } = useDB();
 
     const handleSubmit = async(e) => {
@@ -20,7 +22,10 @@ function ModalContentOrder({handleCloseWindow, productsToOrder, profileData}) {
         data.id = id;
         data.orderDate = new Date();
         data.status = 'Створено';
-        await create('orders/'+id, data).then(() => {handleCloseWindow(); clearShoppingCart()});
+        if (profileData.email) {
+            data.email = profileData.email;
+        }
+        await create('orders/'+id, data).then(() => {handleCloseWindow(); clearShoppingCart(); toast.success('Замовлення успішно створене! Переглядайте статус в "Мої замовлення".', {autoClose: false})});
     }
 
     return (
@@ -47,7 +52,7 @@ function ModalContentOrder({handleCloseWindow, productsToOrder, profileData}) {
                     </b></li>
                 </ul>
                 <form onSubmit={handleSubmit}>
-                    <ModalContentForm profileData={profileData} />
+                    <ModalContentForm />
                     <div className="form-group">
                         <button disabled={isLoading}>Оформити замовлення</button>
                     </div>

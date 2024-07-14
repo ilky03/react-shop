@@ -1,13 +1,34 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+
+import { toast } from 'react-toastify';
+
+import Spinner from '../spinner/Spinner';
 
 import useDB from "../../services/useDB";
 
-function ModalContentAuthForm() {
+function ModalContentAuthForm({handleCloseWindow}) {
     
     const [authMode, setAuthMode] = useState('login');
-
+    const [isLoading, setIsLoading] = useState(false);
+    const [scroll, setScroll] = useState(0);
     const {auth, create} = useDB();
+
+    useEffect(() => {
+        const modal = document.querySelector('.modal-content');
+        
+        if (modal) {
+            const handleScroll = () => {
+                setScroll(modal.scrollTop);
+            };
+            
+            modal.addEventListener("scroll", handleScroll);
+    
+            return () => {
+                modal.removeEventListener("scroll", handleScroll);
+            };
+        }
+    }, []);
 
     const isLoginMode = authMode === 'login';
 
@@ -19,13 +40,17 @@ function ModalContentAuthForm() {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
+        setIsLoading(true);
 
         if (isLoginMode) {
             try {
                 await signInWithEmailAndPassword(auth, data.email, data.password);
-                console.log('login suck');
+                toast.success('Вхід виконано!');
+                handleCloseWindow();
             } catch (e) {
-                console.log(e.message);
+                toast.error('От халепа... Сталася помилка :(')
+            } finally {
+                setIsLoading(false);
             }
         } else {
             try {
@@ -34,15 +59,19 @@ function ModalContentAuthForm() {
                 if (user) {
                     await create(`users/${user.uid}`, data);
                 }
-                console.log('create succ')
+                toast.success('Профіль успішно створений!');
+                handleCloseWindow();
             } catch (e) {
-                console.log(e.message);
+                toast.error('От халепа... Сталася помилка :(')
+            } finally {
+                setIsLoading(false);
             }
         }
     }
     
     return (
         <>
+            {isLoading && <div className="modal-spinner" style={{top: `${scroll}px`}}><Spinner /></div>}
             <h2>{isLoginMode ? 'Вхід' : 'Реєстрація'}</h2>
             <form onSubmit={handleSubmit}>
                 <div className="form-group">

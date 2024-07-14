@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useEffect, useState, useRef, useContext } from 'react';
 
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import { AppContext } from '../context/AppContext';
 import CategoryCard from '../categoryCard/CategoryCard';
 import Modal from '../modal/Modal';
@@ -17,7 +20,7 @@ import swipeIcon from '../../sources/header/swipe.svg';
 
 function Header() {
 
-    const { productsData, wishlist, categories, shoppingCart, windowWidth, isLoading } = useContext(AppContext);
+    const { productsData, wishlist, categories, shoppingCart, windowWidth, profileData, isLoading } = useContext(AppContext);
     const [isOpenCategories, setIsOpenCategories] = useState(false);
     const [isActiveSearch, setIsActiveSearch] = useState(false);
     const [search, setSearch] = useState('');
@@ -60,7 +63,11 @@ function Header() {
     }, [scrollBarWidth, showSearchInput, isOpenBasket, isOpenProfile, isOpenWishlist, isOpenCategories, isActiveSearch, isShowCenteredModal, windowWidth]);
 
     useEffect(() => {
-        setSearchRes(productsData && productsData.filter(product => product.title && product.title.toLowerCase().includes(search.toLowerCase())));
+        if (search === '') {
+            setSearchRes('');
+        } else {
+            setSearchRes(productsData && productsData.filter(product => product.title && product.title.toLowerCase().includes(search.toLowerCase())));
+        }
         // eslint-disable-next-line
     }, [search]);
 
@@ -89,6 +96,7 @@ function Header() {
 
     return (
         <>
+            <ToastContainer draggable draggablePercent={40} position={'bottom-right'} />
             {isShowCenteredModal && <CenteredModal handleCloseWindow={onShowCenteredModal} productsToOrder={productsToOrder} type={modalContentType}/>}
             {(showSearchInput || isActiveSearch || isOpenCategories || isOpenBasket || isOpenProfile || isOpenWishlist) && <div className="modal-backdrop modal-backdrop_header" onClick={handleBgClick}></div>}
             <header>
@@ -130,7 +138,7 @@ function Header() {
                             className={`header__search ${showSearchInput ? 'accent' : ''}`}
                             disabled={windowWidth > 1024}
                         ><img src={searchIcon} alt="" /></button>
-                        {isActiveSearch && searchRes.length !== 0 &&
+                        {isActiveSearch && searchRes && searchRes.length !== 0 &&
                             <div className="modal-window">
                                 <h5>Результати пошуку</h5>
                                 <ul>
@@ -155,11 +163,6 @@ function Header() {
                             </div>
                         }
                     </form>
-            
-                    <div className="header__lang-toggle">
-                        <p>UA</p>
-                        <p>RU</p>
-                    </div>
                     
                     <button onClick={() => setIsOpenProfile(!isOpenProfile)} style={{position: 'relative'}}>
                         <div className={`header__profile ${isOpenProfile ? 'accent' : ''}`} >
@@ -168,18 +171,26 @@ function Header() {
                         {isOpenProfile && 
                             <div className="modal-window">
                                 <h2>Профіль</h2>
-                                <ul>
-                                    <li onClick={() => onShowCenteredModal('profile-cabinet')}>
-                                        Особистий кабінет
+                                <ul className='modal-window__profile'>
+                                    <li>
+                                        <button onClick={() => onShowCenteredModal('profile-cabinet')} disabled={!profileData}>
+                                            Особистий кабінет
+                                        </button>
                                     </li>
-                                    <li onClick={() => onShowCenteredModal('profile-settings')}>
-                                        Налаштування
+                                    <li>
+                                        <button onClick={() => onShowCenteredModal('profile-settings')} disabled={!profileData}>
+                                            Налаштування
+                                        </button>
                                     </li>
-                                    <li onClick={() => onShowCenteredModal('profile-orders')}>
-                                        Мої замовлення
+                                    <li>
+                                        <button onClick={() => onShowCenteredModal('profile-orders')} disabled={!profileData}>
+                                            Мої замовлення
+                                        </button>
                                     </li>
-                                    <li onClick={() => onShowCenteredModal('profile-login')}>
-                                        Вхід/реєстрація
+                                    <li>
+                                        <button onClick={() => onShowCenteredModal('profile-login')} disabled={profileData}>
+                                            Вхід/реєстрація
+                                        </button>
                                     </li>
                                 </ul>
                             </div>
