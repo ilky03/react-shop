@@ -352,6 +352,7 @@ function Modal({action, handleClose, categories, handleChanged, products, orders
                                                     <div className="order__details">
                                                         <p><span>ПІБ</span><br />{order.lastName + ' ' + order.firstName+ ' ' + order.middleName }</p>
                                                         <p><span>Номер телефону</span><br />{order.phoneNumber}</p>
+                                                        <p><span>Поштова адреса</span><br />{order.email}</p>
                                                     </div>
                                                 </div>
                                                 <div className="order-block">
@@ -640,10 +641,13 @@ function Modal({action, handleClose, categories, handleChanged, products, orders
                             <input type="text" name="firstName" id="firstName" defaultValue={order.firstName} required />
 
                             <label htmlFor="middleName">По батькові</label>
-                            <input type="text" name="middleName" id="middleName" defaultValue={order.middleName} required />
+                            <input type="text" name="middleName" id="middleName" defaultValue={order.middleName} />
 
                             <label htmlFor="phoneNumber">Номер телефону</label>
                             <input type="text" name="phoneNumber" id="phoneNumber" defaultValue={order.phoneNumber} required />
+
+                            <label htmlFor="email">Поштова адреса</label>
+                            <input type="text" name="email" id="email" defaultValue={order.email} />
                         </div>
 
                         <div className="form-group">
