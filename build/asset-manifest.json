@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.61bf83e9.css",
-    "main.js": "/static/js/main.efa39fed.js",
+    "main.css": "/static/css/main.30c25a5f.css",
+    "main.js": "/static/js/main.9b838dd8.js",
     "static/media/np_logo.png": "/static/media/np_logo.7ae5d7aa1250db450dba.png",
     "static/media/hot-sale.png": "/static/media/hot-sale.a78b9370624edb825832.png",
     "static/media/empty.png": "/static/media/empty.97f2e9619f09ac4ba354.png",
@@ -16,9 +16,9 @@
     "static/media/wish.svg": "/static/media/wish.1e74524354ca60b52f3c3cf88b5ae4c0.svg",
     "static/media/shopCart_filled.svg": "/static/media/shopCart_filled.3ef387f5c18adf1e26f9ca51342fe58d.svg",
     "static/media/shopBasket.svg": "/static/media/shopBasket.ec71458909f34b39f1bc5fb49a06cca3.svg",
+    "index.html": "/index.html",
     "static/media/search.svg": "/static/media/search.ac015a376f07e3c48bf3e30e2ee2af45.svg",
     "static/media/check.svg": "/static/media/check.7137a966b2242b3c8f5e832cb56cd4c6.svg",
-    "index.html": "/index.html",
     "static/media/wishFilled.svg": "/static/media/wishFilled.dc4e39b51081582b4aca83c0ba71727d.svg",
     "static/media/delete.svg": "/static/media/delete.de8a214b2a26ebf9ee37a7f3afbc0c85.svg",
     "static/media/starHalf.svg": "/static/media/starHalf.d8986da496cd2f613a6fc3beb78167ec.svg",
@@ -29,11 +29,11 @@
     "static/media/arrow-up.svg": "/static/media/arrow-up.0ac712619555704599247a08417a0f94.svg",
     "static/media/arrow-down.svg": "/static/media/arrow-down.259dfdcafecbbe5d937e7da80fc9d266.svg",
     "static/media/arrow_down.svg": "/static/media/arrow_down.c639d7fb7c893568d34f65d21775fba7.svg",
-    "main.61bf83e9.css.map": "/static/css/main.61bf83e9.css.map",
-    "main.efa39fed.js.map": "/static/js/main.efa39fed.js.map"
+    "main.30c25a5f.css.map": "/static/css/main.30c25a5f.css.map",
+    "main.9b838dd8.js.map": "/static/js/main.9b838dd8.js.map"
   },
   "entrypoints": [
-    "static/css/main.61bf83e9.css",
-    "static/js/main.efa39fed.js"
+    "static/css/main.30c25a5f.css",
+    "static/js/main.9b838dd8.js"
   ]
 }

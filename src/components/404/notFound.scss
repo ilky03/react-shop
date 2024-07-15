@@ -1,0 +1,21 @@
+@import '../../index.scss';
+
+.not-found-container {
+    display: grid;
+    place-content: center;
+    &__emoji {
+        font-size: 100px;
+    }
+    width: 100%;
+    min-height: 50vh;
+    text-align: center;
+    padding: 20px;
+    a {
+        background-color: $third-accent-color;
+        border: none;
+        padding: 10px;
+        color: #fff;
+        border-radius: 10px;
+        margin-top: 20px;
+    }
+}

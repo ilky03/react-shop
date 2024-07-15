@@ -110,11 +110,7 @@ header > .container{
             cursor: pointer;
         }
     }
-    &__wishlist + .modal-window, &__shopping-cart + .modal-window {
-            width: 50em;
-            right: 0;
-            left: auto;
-    }
+
     &__wishlist, &__shopping-cart {
         position: relative;
         &_counter {
@@ -292,6 +288,13 @@ header > .container{
             justify-content: center;
         }
     }
+
+    &_right {
+        width: 50em;
+        right: 0;
+        left: auto;
+    }
+
     &__empty-block {
         display: flex;
         align-items: center;

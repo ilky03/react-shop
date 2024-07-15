@@ -44,13 +44,15 @@ function Modal ({setState, state, elements, type, icon, handleOrderClick}) {
 
     return (
         <>
-            <button onClick={() => setState(!state)} style={{position: 'relative'}}>
-                <div className={`header__${type} ${state ? "accent" : ""}`}>
-                    <img src={icon} alt={type} />
-                    <span className={`header__${type}_counter`}>{(selectedProducts && selectedProducts.length) || 0}</span>
-                </div>
+            <div style={{position: 'relative'}}>
+                <button onClick={() => setState(!state)}>
+                    <div className={`header__${type} ${state ? "accent" : ""}`}>
+                        <img src={icon} alt={type} />
+                        <span className={`header__${type}_counter`}>{(selectedProducts && selectedProducts.length) || 0}</span>
+                    </div>
+                </button>
                 {state && 
-                    <div className="modal-window">
+                    <div className="modal-window modal-window_right">
                         <h2>{type === 'shopping-cart' ? 'Кошик' : 'Список бажань'}</h2>
                         <ul>
                             {!(selectedProducts && selectedProducts.length) ? 
@@ -121,7 +123,7 @@ function Modal ({setState, state, elements, type, icon, handleOrderClick}) {
                         }
                     </div>
                 }
-            </button>
+            </div>
 
         </>
     )

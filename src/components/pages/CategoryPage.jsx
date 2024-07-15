@@ -25,7 +25,7 @@ function CategoryPage() {
     useEffect(() => {
         setCategoryTitle(categories && categories.find(category => category.id === categoryId).title);
     }, [categories, categoryId]);
-    console.log(categoryTitle);
+
     const location = useLocation();
     const fullUrl = `${window.location.origin}${location.pathname}${location.search}${location.hash}`;
 

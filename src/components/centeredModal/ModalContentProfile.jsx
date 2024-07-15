@@ -52,10 +52,15 @@ function ModalContentProfile({handleCloseWindow, type}) {
         e.preventDefault();
         const formData = new FormData(e.target);
         const data = Object.fromEntries(formData);
-        await update(`users/${profileData.id}`, data);
-        data.email = profileData.email;
-        setProfileData(data);
-        toast.success('Успішно оновлено');
+        console.log(profileData);
+        try {
+            await update(`users/${profileData.id}`, data);
+            data.email = profileData.email;
+            setProfileData(data);
+            toast.success('Успішно оновлено');
+        } catch(e) {
+            console.log(e);
+        }
         handleCloseWindow();
     }
 

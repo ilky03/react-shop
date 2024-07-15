@@ -7,6 +7,7 @@ import MainPage from "../pages/MainPage";
 import CategoryPage from "../pages/CategoryPage";
 import ProductPage from "../pages/ProductPage";
 import Footer from "../footer/Footer";
+import NotFound from '../404/NotFound';
 
 function App() {
 
@@ -20,6 +21,7 @@ function App() {
                 <Route path='/' element={<MainPage />} />
                 <Route path='/category/:categoryId' element={<CategoryPage />} />
                 <Route path='/product/:productID' element={<ProductPage />} />
+                <Route path='*' element={<NotFound />} />
             </Routes>
         </HelmetProvider>
         </AppProvider>

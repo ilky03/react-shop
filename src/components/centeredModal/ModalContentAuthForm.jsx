@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, sendEmailVerification, signOut } from "firebase/auth";
 
 import { toast } from 'react-toastify';
 
@@ -44,22 +44,34 @@ function ModalContentAuthForm({handleCloseWindow}) {
 
         if (isLoginMode) {
             try {
-                await signInWithEmailAndPassword(auth, data.email, data.password);
-                toast.success('Вхід виконано!');
-                handleCloseWindow();
-            } catch (e) {
-                toast.error('От халепа... Сталася помилка :(')
-            } finally {
+                const userCredential = await signInWithEmailAndPassword(auth, data.email, data.password);
+                const user = userCredential.user;
+
+                if (!user.emailVerified) {
+                  await signOut(auth);
+                  toast.error('Будь ласка, підтвердіть свою електронну пошту.');
+                } else {
+                  toast.success('Вхід виконано!');
+                  handleCloseWindow();
+                }
+              } catch (e) {
+                toast.error('От халепа... Сталася помилка :(');
+              } finally {
                 setIsLoading(false);
-            }
+              }
         } else {
             try {
-                await createUserWithEmailAndPassword(auth, data.email, data.password);
-                const user = auth.currentUser;
+                const userCredential = await createUserWithEmailAndPassword(auth, data.email, data.password);
+                const user = userCredential.user;
+
+                await sendEmailVerification(user);
                 if (user) {
+                    data.id = user.uid;
                     await create(`users/${user.uid}`, data);
                 }
-                toast.success('Профіль успішно створений!');
+                toast.success('Профіль успішно створений!'); 
+                await signOut(auth);
+                toast.info('Будь ласка, підтвердіть свою електронну пошту.');
                 handleCloseWindow();
             } catch (e) {
                 toast.error('От халепа... Сталася помилка :(')
@@ -92,12 +104,12 @@ function ModalContentAuthForm({handleCloseWindow}) {
 
                     <label htmlFor="password">Пароль</label>
                     <input type="password" id="password" name="password" minLength={6} required />
-
+{/* 
                     {!isLoginMode &&
                     <>
                         <label htmlFor="password">Повторіть пароль</label>
                         <input type="password" id="password" name="password" minLength={6} required />
-                    </>}
+                    </>} */}
                     <button>{!isLoginMode ? 'Зареєструватися' : 'Увійти'}</button>
                 </div>
             </form>

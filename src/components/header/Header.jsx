@@ -163,11 +163,12 @@ function Header() {
                             </div>
                         }
                     </form>
-                    
-                    <button onClick={() => setIsOpenProfile(!isOpenProfile)} style={{position: 'relative'}}>
-                        <div className={`header__profile ${isOpenProfile ? 'accent' : ''}`} >
-                            <img src={profileIcon} alt="" />
-                        </div>
+                    <div style={{position: 'relative'}}>
+                        <button onClick={() => setIsOpenProfile(!isOpenProfile)}>
+                            <div className={`header__profile ${isOpenProfile ? 'accent' : ''}`} >
+                                <img src={profileIcon} alt="" />
+                            </div>
+                        </button>
                         {isOpenProfile && 
                             <div className="modal-window">
                                 <h2>Профіль</h2>
@@ -195,7 +196,7 @@ function Header() {
                                 </ul>
                             </div>
                         }
-                    </button>
+                    </div>
             
                     <Modal setState={setIsOpenWishlist} state={isOpenWishlist} elements={wishlist} type={'wishlist'} icon={wishIcon} />
                     <Modal setState={setIsOpenBasket} state={isOpenBasket} elements={shoppingCart} type={'shopping-cart'} icon={shopBasketIcon} handleOrderClick={onShowCenteredModal} />

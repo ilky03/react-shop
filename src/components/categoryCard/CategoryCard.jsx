@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function CategoryCard({title, id, photoUrl, emoji}) {
+function CategoryCard({title, id, photoUrl}) {
     const [isLoaded, setIsLoaded] = useState(false);
 
     const handleImageLoaded = () => {

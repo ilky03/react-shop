@@ -21,16 +21,28 @@ const AppProvider = ({ children }) => {
   const { makeQuery, isLoading, get, auth } = useDB();
 
   useEffect(() => {
-      makeQuery('banners/').then(data => setBanners(data));
-      makeQuery('/products').then(data => setProductsData(data));
-      makeQuery('/categories').then(data => setCategories(data));
-      auth.onAuthStateChanged(async (user) => {
-        try {
-          get(`users/${user.uid}`).then(data => setProfileData(data));
-        } catch(e) {
-        }
+    const fetchData = async () => {
+      const bannersData = await makeQuery('banners/');
+      setBanners(bannersData);
 
-     });
+      const productsData = await makeQuery('/products');
+      setProductsData(productsData);
+
+      const categoriesData = await makeQuery('/categories');
+      setCategories(categoriesData);
+    };
+
+    const handleAuthStateChanged = async (user) => {
+      if (user && user.emailVerified) {
+        const profileData = await get(`users/${user.uid}`);
+        setProfileData(profileData);
+      }
+    };
+
+    fetchData();
+    const unsubscribe = auth.onAuthStateChanged(handleAuthStateChanged);
+
+    return () => unsubscribe();
       //eslint-disable-next-line
   }, []);
 
