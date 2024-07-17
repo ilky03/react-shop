@@ -22,7 +22,7 @@ function ModalContentOrder({handleCloseWindow, productsToOrder}) {
         data.id = id;
         data.orderDate = new Date();
         data.status = 'Створено';
-        if (profileData.email) {
+        if (profileData && profileData.email) {
             data.email = profileData.email;
         }
         await create('orders/'+id, data).then(() => {handleCloseWindow(); clearShoppingCart(); toast.success('Замовлення успішно створене! Переглядайте статус в "Мої замовлення".', {autoClose: false})});
