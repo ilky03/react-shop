@@ -80,7 +80,7 @@ function Modal({action, handleClose, categories, handleChanged, products, orders
                     }
                 });
                 
-                data.rating = 0;
+                data.rating = [];
 
                 data.isAvailable = data.isAvailable === 'on' ? false : true;
                 data.isDiscount = data.isDiscount === 'on' ? true : false;
@@ -114,7 +114,7 @@ function Modal({action, handleClose, categories, handleChanged, products, orders
                     }
                 });
 
-                data.rating = 0;
+                // data.rating = [];
 
                 data.isAvailable = data.isAvailable === 'on' ? false : true;
                 data.isDiscount = data.isDiscount === 'on' ? true : false;
