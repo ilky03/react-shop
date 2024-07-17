@@ -1,6 +1,7 @@
 import { useEffect, useState, useContext } from 'react';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 import DOMPurify from 'dompurify';
+import { toast } from 'react-toastify';
 
 import useDB from '../../services/useDB';
 import { AppContext } from '../context/AppContext';
@@ -8,15 +9,13 @@ import { AppContext } from '../context/AppContext';
 import SEO from '../seo/SEO';
 import ProductBlocks from '../productBlocks/ProductBlocks';
 import Spinner from '../spinner/Spinner';
+import Reviews from '../reviews/Reviews';
 
 import './productPage.scss';
 
 import arrowUpIcon from '../../sources/product-page/arrow-up.svg';
 import whiteArrowUpIcon from '../../sources/category-page/arrow-up.svg';
 import arrowDownIcon from '../../sources/product-page/arrow-down.svg';
-import starIcon from '../../sources/product-page/star.svg';
-import filledStarIcon from '../../sources/product-page/starFilled.svg';
-import halfStarIcon from '../../sources/product-page/starHalf.svg';
 import wishIcon from '../../sources/product-page/wish.svg';
 import arrowLeftIcon from '../../sources/product-page/arrow-left.svg';
 import shopCartIcon from '../../sources/product-page/shopCart.svg';
@@ -136,35 +135,6 @@ function ProductPage() {
         )
     }
 
-    const renderRating = () => {
-        const rating = productData.rating;
-        const fullStars = Math.floor(rating);
-        const hasHalfStar = rating % 1 !== 0;
-        const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
-
-        const stars = [];
-        
-        for (let i = 0; i < fullStars; i++) {
-            stars.push(<img key={i} src={filledStarIcon} alt="" />);
-        }
-
-        if (hasHalfStar) {
-            stars.push(<img key={stars.length} src={halfStarIcon} alt="" />);
-        }
-
-        for (let i = 0; i < emptyStars; i++) {
-            stars.push(<img key={stars.length} src={starIcon} alt="" />);
-        }
-        return (
-            <>
-                <div>
-                    {stars}
-                </div>
-                <p>5 відгуків</p>
-            </>
-        )
-    }
-
     const handleFastBuy = async (e, productData) => {
         const { id, title, photoUrl, price, isDiscount, discPrice, article} = productData;
         e.preventDefault();
@@ -184,6 +154,7 @@ function ProductPage() {
         }];
         data.isFastBuy = true;
         await create(`orders/${idForRecord}`, data);
+        toast.success('Дякуємо за замовлення. Згодом ми вам зателефонуємо.')
     }
 
     return (
@@ -203,7 +174,7 @@ function ProductPage() {
                                 {productData.title}
                             </h1>
                             <div className="product-page__reviews">
-                                {renderRating()}
+                                {<Reviews productData={productData}/>}
                             </div>
                             <div className="product-page__article"><p>Артикул: {productData.article}</p></div>
                             <div className="product-page__price">

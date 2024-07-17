@@ -22,29 +22,31 @@ const AppProvider = ({ children }) => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const bannersData = await makeQuery('banners/');
+      const [bannersData, productsData, categoriesData] = await Promise.all([
+        makeQuery('banners/'),
+        makeQuery('/products'),
+        makeQuery('/categories')
+      ]);
+      
       setBanners(bannersData);
-
-      const productsData = await makeQuery('/products');
       setProductsData(productsData);
-
-      const categoriesData = await makeQuery('/categories');
       setCategories(categoriesData);
     };
-
+  
     const handleAuthStateChanged = async (user) => {
       if (user && user.emailVerified) {
         const profileData = await get(`users/${user.uid}`);
         setProfileData(profileData);
       }
     };
-
+  
     fetchData();
     const unsubscribe = auth.onAuthStateChanged(handleAuthStateChanged);
-
+  
     return () => unsubscribe();
       //eslint-disable-next-line
   }, []);
+  
 
   
   useEffect(() => {

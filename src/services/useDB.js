@@ -10,7 +10,7 @@ import {
     getDocs, 
     query, 
     collection,
-    where
+    where,
 } from "firebase/firestore";
 
 import { getAuth } from "firebase/auth";
@@ -112,6 +112,31 @@ export default function useDB() {
         }
     }
 
+    const updateProductRating = async (productId, userId, rating) => {
+        const productRef = doc(db, 'products', productId);
+    
+        try {
+            const productSnap = await getDoc(productRef);
+            if (productSnap.exists()) {
+                const currentData = productSnap.data();
+                const currentRatings = currentData.rating || [];
+    
+                const userRatingIndex = currentRatings.findIndex(item => item.uid === userId);
+    
+                if (userRatingIndex !== -1) {
+                    currentRatings[userRatingIndex].rating = rating;
+                } else {
+                    currentRatings.push({ uid: userId, rating });
+                }
+                await updateDoc(productRef, { rating: currentRatings });
+                toast.success('Дякуємо за ваш відгук!');
+            }
+        } catch (e) {
+            toast.error('От халепа... Сталася помилка :(');
+        }
+    };
+    
+
     function generateID(length = 20) {
         const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
         let result = '';
@@ -122,5 +147,5 @@ export default function useDB() {
         return result;
     }
 
-    return {get, create, update, deleteRecord, makeQuery, generateID, auth, isLoading};
+    return {get, create, update, deleteRecord, makeQuery, generateID, updateProductRating, auth, isLoading};
 }
