@@ -46,7 +46,7 @@ function App() {
     //eslint-disable-next-line
   }, [changedBanners]);
  
-  const onCloseModal = () => {
+  const handleCloseModal = () => {
     setShowModal(false);
   }
 
@@ -80,7 +80,7 @@ function App() {
 
       {showModal && 
        <Modal action={action} 
-              handleClose={onCloseModal} 
+              onClose={handleCloseModal} 
               categories={categories} 
               handleChanged={onChanged} 
               products={products} 

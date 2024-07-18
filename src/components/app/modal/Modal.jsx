@@ -10,7 +10,7 @@ import editIcon from '../../../sources/img/edit_thin.svg';
 import npLogo from '../../../sources/img/np_logo.png';
 import ukrpLogo from '../../../sources/img/ukrp_logo.png';
 
-function Modal({action, handleClose, categories, handleChanged, products, orders, banners}) {
+function Modal({action, onClose, categories, handleChanged, products, orders, banners}) {
 
     const [showModal, setShowModal] = useState(false);
     const [parameters, setParameters] = useState();
@@ -744,10 +744,10 @@ function Modal({action, handleClose, categories, handleChanged, products, orders
     }
     return (
         <>
-            <div className="modal">
-                <div className="modal__window" onClick={(e) => e.stopPropagation()}>
+            <div className="modal" onMouseDown={onClose}>
+                <div className="modal__window" onMouseDown={(e) => e.stopPropagation()}>
                     {renderModal()}
-                    <button className="close-btn" onClick={handleClose}>Скасувати</button>
+                    <button className="close-btn" onClick={onClose}>Скасувати</button>
                 </div>
             </div>
             {showModal && 
