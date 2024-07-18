@@ -71,6 +71,7 @@ export default function useDB() {
         let path = doc(db, url);
         try {
             await updateDoc(path, data);
+            toast.success('Успішно оновлено!');
         } catch(e) {
             toast.error('От халепа... Сталася помилка :(')
         } finally {

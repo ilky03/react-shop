@@ -8,7 +8,7 @@ import emptyPic from '../../sources/header/empty.png';
 import wishIcon from '../../sources/product-card/wish.svg';
 
 
-function Modal ({setState, state, elements, type, icon, handleOrderClick}) {
+function HeaderModal ({onCloseAllModals, setState, state, elements, type, icon, onOrderClick}) {
     const { productsData, handleItemToggle } = useContext(AppContext);
     const [selectedProducts, setSelectedProducts] = useState();
     const [isLoaded, setIsLoaded] = useState(false);
@@ -45,7 +45,7 @@ function Modal ({setState, state, elements, type, icon, handleOrderClick}) {
     return (
         <>
             <div style={{position: 'relative'}}>
-                <button onClick={() => setState(!state)}>
+                <button onClick={() => {onCloseAllModals(); setState(!state)}}>
                     <div className={`header__${type} ${state ? "accent" : ""}`}>
                         <img src={icon} alt={type} />
                         <span className={`header__${type}_counter`}>{(selectedProducts && selectedProducts.length) || 0}</span>
@@ -117,7 +117,7 @@ function Modal ({setState, state, elements, type, icon, handleOrderClick}) {
                                     </p>
                                 </div>
                                 <div>
-                                    <button onClick={() => handleOrderClick('order', selectedProducts)} disabled={selectedProducts.length === 0}>Оформити замовлення</button>
+                                    <button onClick={() => onOrderClick('order', selectedProducts)} disabled={selectedProducts.length === 0}>Оформити замовлення</button>
                                 </div>
                             </div>
                         }
@@ -129,4 +129,4 @@ function Modal ({setState, state, elements, type, icon, handleOrderClick}) {
     )
 }
 
-export default Modal;
+export default HeaderModal;

@@ -24,7 +24,7 @@ function ModalContentForm() {
                 <input type="text" name="middleName" id="middleName" defaultValue={middleName} />
 
                 <label htmlFor="phoneNumber">Номер телефону</label>
-                <input type="text" name="phoneNumber" id="phoneNumber" defaultValue={phoneNumber} required />
+                <input type="text" name="phoneNumber" id="phoneNumber" defaultValue={phoneNumber} minLength={10} maxLength={14} required />
 
                 <label htmlFor="email">Поштова адреса</label>
                 <input type="text" name="email" id="email" defaultValue={email} disabled={email} required />

@@ -6,7 +6,7 @@
     grid-template-rows: 60px auto;
     gap: 20px;
     width: 100%;
-    min-height: 50vh;
+    min-height: calc(100vh - 166px - 115px - 61px);
     &__nav {
         display: flex;
         align-items: center;

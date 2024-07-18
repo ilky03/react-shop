@@ -6,7 +6,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { AppContext } from '../context/AppContext';
 import CategoryCard from '../categoryCard/CategoryCard';
-import Modal from '../modal/Modal';
+import HeaderModal from '../headerModal/HeaderModal';
 import CenteredModal from "../centeredModal/CenteredModal";
 import Spinner from '../spinner/Spinner';
 
@@ -42,7 +42,6 @@ function Header() {
         if (!isShowCenteredModal) {
             setScrollBarWidth(window.innerWidth - document.documentElement.clientWidth);
         }
-        
     }, [windowWidth, isShowCenteredModal]);
 
     useEffect(() => {
@@ -79,7 +78,7 @@ function Header() {
         }
     }, [isActiveSearch]);
 
-    const onShowCenteredModal = (type = '', selectedProducts = 0) => {
+    const handleShowCenteredModal = (type = '', selectedProducts = 0) => {
         !isShowCenteredModal ? document.body.style.overflow = 'hidden' : document.body.style.overflow = 'auto';
         setIsShowCenteredModal(!isShowCenteredModal);
         setModalContentType(type);
@@ -87,7 +86,8 @@ function Header() {
             setProductsToOrder(selectedProducts);
         }
     }
-    const handleBgClick = () => {
+
+    const handleCloseAllModals = () => {
         setIsOpenCategories(false);
         setIsOpenBasket(false);
         setIsOpenProfile(false);
@@ -97,15 +97,15 @@ function Header() {
     return (
         <>
             <ToastContainer draggable draggablePercent={40} position={'bottom-right'} />
-            {isShowCenteredModal && <CenteredModal handleCloseWindow={onShowCenteredModal} productsToOrder={productsToOrder} type={modalContentType}/>}
-            {(showSearchInput || isActiveSearch || isOpenCategories || isOpenBasket || isOpenProfile || isOpenWishlist) && <div className="modal-backdrop modal-backdrop_header" onClick={handleBgClick}></div>}
+            {isShowCenteredModal && <CenteredModal handleCloseWindow={handleShowCenteredModal} productsToOrder={productsToOrder} type={modalContentType}/>}
+            {(showSearchInput || isActiveSearch || isOpenCategories || isOpenBasket || isOpenProfile || isOpenWishlist) && <div className="modal-backdrop modal-backdrop_header" onClick={() => handleCloseAllModals()}></div>}
             <header>
                 <div className="container" ref={navRef}>
                     <div className="header__logo">
                         <Link to="/"><p>HOUSE</p></Link>
                     </div>
             
-                    <button className="header__category-btn" onClick={() => setIsOpenCategories(!isOpenCategories)}>
+                    <button className="header__category-btn" onClick={() => {handleCloseAllModals(); setIsOpenCategories(!isOpenCategories)}}>
                         <div className="header__burger">
                             <span></span><span></span><span></span>
                         </div>
@@ -126,7 +126,7 @@ function Header() {
                         <input 
                             type="text" 
                             placeholder="Я шукаю..." 
-                            onFocus={() => setIsActiveSearch(true)} 
+                            onFocus={() => {handleCloseAllModals(); setIsActiveSearch(true)}} 
                             onBlur={() => {setIsActiveSearch(false); setShowSearchInput(false)}}
                             onChange={(e) => setSearch(e.target.value)}
                             value={search}
@@ -164,7 +164,7 @@ function Header() {
                         }
                     </form>
                     <div style={{position: 'relative'}}>
-                        <button onClick={() => setIsOpenProfile(!isOpenProfile)}>
+                        <button onClick={() => {handleCloseAllModals(); setIsOpenProfile(!isOpenProfile)}}>
                             <div className={`header__profile ${isOpenProfile ? 'accent' : ''}`} >
                                 <img src={profileIcon} alt="" />
                             </div>
@@ -174,22 +174,22 @@ function Header() {
                                 <h2>Профіль</h2>
                                 <ul className='modal-window__profile'>
                                     <li>
-                                        <button onClick={() => onShowCenteredModal('profile-cabinet')} disabled={!profileData}>
+                                        <button onClick={() => handleShowCenteredModal('profile-cabinet')} disabled={!profileData}>
                                             Особистий кабінет
                                         </button>
                                     </li>
                                     <li>
-                                        <button onClick={() => onShowCenteredModal('profile-settings')} disabled={!profileData}>
+                                        <button onClick={() => handleShowCenteredModal('profile-settings')} disabled={!profileData}>
                                             Налаштування
                                         </button>
                                     </li>
                                     <li>
-                                        <button onClick={() => onShowCenteredModal('profile-orders')} disabled={!profileData}>
+                                        <button onClick={() => handleShowCenteredModal('profile-orders')} disabled={!profileData}>
                                             Мої замовлення
                                         </button>
                                     </li>
                                     <li>
-                                        <button onClick={() => onShowCenteredModal('profile-login')} disabled={profileData}>
+                                        <button onClick={() => handleShowCenteredModal('profile-login')} disabled={profileData}>
                                             Вхід/реєстрація
                                         </button>
                                     </li>
@@ -198,8 +198,8 @@ function Header() {
                         }
                     </div>
             
-                    <Modal setState={setIsOpenWishlist} state={isOpenWishlist} elements={wishlist} type={'wishlist'} icon={wishIcon} />
-                    <Modal setState={setIsOpenBasket} state={isOpenBasket} elements={shoppingCart} type={'shopping-cart'} icon={shopBasketIcon} handleOrderClick={onShowCenteredModal} />
+                    <HeaderModal onCloseAllModals={handleCloseAllModals} setState={setIsOpenWishlist} state={isOpenWishlist} elements={wishlist} type={'wishlist'} icon={wishIcon} />
+                    <HeaderModal onCloseAllModals={handleCloseAllModals} setState={setIsOpenBasket} state={isOpenBasket} elements={shoppingCart} type={'shopping-cart'} icon={shopBasketIcon} onOrderClick={handleShowCenteredModal} />
 
                 </div>
 

@@ -113,6 +113,7 @@ function CategoryPage() {
                         </div>
                         <div className="category-page__sorting">
                             <select name="sort" id="" onChange={(e) => handleSorting(e.target.value)}>
+                                <option selected disabled>Сортувати...</option>
                                 <option value="rating">За рейтингом</option>
                                 <option value="priceLowHigh">Від дешевих до дорогих</option>
                                 <option value="priceHighLow">Від дорогих до дешевих</option>

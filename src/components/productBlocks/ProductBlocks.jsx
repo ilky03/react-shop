@@ -97,7 +97,15 @@ function ProductBlocks({ flag, category, filters, sortBy, handleReloadGallery })
     } else if (sortBy === 'priceHighLow') {
         filteredProducts.sort((a, b) => b.price - a.price);
     } else if (sortBy === 'rating') {
-        filteredProducts.sort((a, b) => b.rating - a.rating);
+        filteredProducts.sort((a, b) => {
+            const ratingA = a.rating;
+            const ratingB = b.rating;
+
+            const averageA = ratingA.reduce((sum, item) => sum + item.rating, 0) / ratingA.length;
+            const averageB = ratingB.reduce((sum, item) => sum + item.rating, 0) / ratingB.length;
+
+            return averageB - averageA;
+        });
     }
 
     useEffect(() => {

@@ -57,9 +57,7 @@ function ModalContentProfile({handleCloseWindow, type}) {
             await update(`users/${profileData.id}`, data);
             data.email = profileData.email;
             setProfileData(data);
-            toast.success('Успішно оновлено');
         } catch(e) {
-            console.log(e);
         }
         handleCloseWindow();
     }

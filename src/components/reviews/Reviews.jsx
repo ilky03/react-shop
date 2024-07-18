@@ -2,6 +2,8 @@ import { useState, useContext } from 'react';
 
 import { AppContext } from '../context/AppContext';
 
+import { toast } from 'react-toastify';
+
 import starIcon from '../../sources/product-page/star.svg';
 import filledStarIcon from '../../sources/product-page/starFilled.svg';
 import halfStarIcon from '../../sources/product-page/starHalf.svg';
@@ -9,13 +11,13 @@ import halfStarIcon from '../../sources/product-page/starHalf.svg';
 import useDB from '../../services/useDB';
 
 function Reviews ({productData}) {
-    const ratingArr = productData.rating;
-    const numberReviews = ratingArr.length;
-    const totalRating = ratingArr.reduce((sum, item) => sum + item.rating, 0);
-    const averageRating = totalRating / numberReviews;
+  const ratingArr = productData.rating;
+  const numberReviews = ratingArr.length;
+  const totalRating = ratingArr.reduce((sum, item) => sum + item.rating, 0);
+  const averageRating = totalRating / numberReviews;
   
   const [hoverRating, setHoverRating] = useState(0);
-  const [currentRating, setCurrentRating] = useState(averageRating);
+  const [currentRating, setCurrentRating] = useState(!isNaN(averageRating) ? averageRating : 0);
   
   const { profileData } = useContext(AppContext);
 
@@ -38,8 +40,12 @@ function Reviews ({productData}) {
 
   const handleClick = async (index) => {
     const newRating = index + 1;
-    setCurrentRating(newRating);
-    await updateProductRating(productData.id, profileData.id, newRating);
+    if (profileData && profileData.id) {
+      setCurrentRating(newRating);
+      await updateProductRating(productData.id, profileData.id, newRating);
+    } else {
+      toast.info('Тільки для зареєстрованих користувачів!');
+    }
   };
 
   const getStars = (ratingValue) => {
@@ -48,8 +54,8 @@ function Reviews ({productData}) {
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
   
     const stars = [];
-
-    if (numberReviews === 0) {
+    console.log(ratingValue)
+    if (ratingValue === 0) {
       for (let i = 0; i < 5; i++) {
         stars.push(<img key={stars.length} src={starIcon} alt="" />);
       }

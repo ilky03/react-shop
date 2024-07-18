@@ -10,7 +10,6 @@ function Footer() {
         <footer className="footer">
             <div className="container">
                 <div className="footer__socials">
-                    <h5>Ми у соцмережах</h5>
                     <div>
                         <a href="google.com"><img src={tgIcon} alt="" /></a>
                         <a href="google.com"><img src={instIcon} alt="" /></a>
@@ -20,30 +19,8 @@ function Footer() {
                 </div>
 
                 <div className="footer__contacts">
-                    <h5>Контакти</h5>
-                    <p>ПП "Товари для дому"</p>
-                    <p>Адреса: м.Одеса, вул.Центральна 39</p>
-                    <p>Гаряча лінія: +380-95-444-33-33</p>
-                </div>
-
-                <div className="footer__nav">
-                    <h5>Допомога</h5>
-                    <ul>
-                        <li>Доставка та оплата</li>
-                        <li>Інструкція</li>
-                        <li>Повернення товару</li>
-                        <li>Зворотній зв'язок</li>
-                    </ul>
-                </div>
-
-                <div className="footer__nav">
-                    <h5>Профіль</h5>
-                    <ul>
-                        <li>Особистий кабінет</li>
-                        <li>Список бажань</li>
-                        <li>Мої замовлення</li>
-                        <li>Вхід/реєстрація</li>
-                    </ul>
+                    <h5>Служба підтримки</h5>
+                    <p>+380 95 444 33 33</p>
                 </div>
             </div>
         </footer>
