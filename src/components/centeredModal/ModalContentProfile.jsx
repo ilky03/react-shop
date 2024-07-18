@@ -105,6 +105,12 @@ function ModalContentProfile({handleCloseWindow, type}) {
                                     <ModalContentOrdersList order={order} />
                                 )
                             })}
+                            {orders && orders.length === 0 &&
+                                <div className="orders-list__info">
+                                    <p className="orders-list__info_emoji">🙃</p>
+                                    <p>Тут будуть ваші замовлення.</p>
+                                </div>
+                            }
                         </ul>
                         <button className='modal-content__cancel-btn' onClick={handleCloseWindow}>Закрити</button>
                     </>

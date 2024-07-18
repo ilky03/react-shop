@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.c16384e6.css",
-    "main.js": "/static/js/main.84dbe61c.js",
+    "main.css": "/static/css/main.77c8c99f.css",
+    "main.js": "/static/js/main.72a949ff.js",
     "static/media/np_logo.png": "/static/media/np_logo.7ae5d7aa1250db450dba.png",
     "static/media/hot-sale.png": "/static/media/hot-sale.a78b9370624edb825832.png",
     "static/media/empty.png": "/static/media/empty.97f2e9619f09ac4ba354.png",
@@ -29,11 +29,11 @@
     "static/media/arrow-up.svg": "/static/media/arrow-up.0ac712619555704599247a08417a0f94.svg",
     "static/media/arrow-down.svg": "/static/media/arrow-down.259dfdcafecbbe5d937e7da80fc9d266.svg",
     "static/media/arrow_down.svg": "/static/media/arrow_down.c639d7fb7c893568d34f65d21775fba7.svg",
-    "main.c16384e6.css.map": "/static/css/main.c16384e6.css.map",
-    "main.84dbe61c.js.map": "/static/js/main.84dbe61c.js.map"
+    "main.77c8c99f.css.map": "/static/css/main.77c8c99f.css.map",
+    "main.72a949ff.js.map": "/static/js/main.72a949ff.js.map"
   },
   "entrypoints": [
-    "static/css/main.c16384e6.css",
-    "static/js/main.84dbe61c.js"
+    "static/css/main.77c8c99f.css",
+    "static/js/main.72a949ff.js"
   ]
 }
