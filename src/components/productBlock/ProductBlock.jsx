@@ -48,8 +48,8 @@ function ProductBlock({handleReloadGallery, id, discPrice, isAvailable, isDiscou
                         className={`product-block__wish-plate ${isWishClicked ? 'product-block__wish-plate_animate' : ''}`}
                         onClick={(e) => handleWishClick(e)}>
                         {wishlist && wishlist.includes(id) ? 
-                            <img src={wishFilledIcon} alt='Прибрати зі списку бажань' /> : 
-                            <img src={wishIcon} alt='Добавити у список бажань' />
+                            <img src={wishFilledIcon} alt='Прибрати зі списку бажань' width="35" height="35" /> : 
+                            <img src={wishIcon} alt='Добавити у список бажань' width="35" height="35" />
                         }
                     </button>
                 </div>
@@ -66,10 +66,10 @@ function ProductBlock({handleReloadGallery, id, discPrice, isAvailable, isDiscou
                     >
                         {shoppingCart && shoppingCart.includes(id) ? 
                             <>
-                                <img src={shopCartFilledIcon} alt="Прибрати з кошика" />
-                                <img src={checkIcon} alt="Мітка" className="product-block__bottom_check" /> 
+                                <img src={shopCartFilledIcon} alt="Прибрати з кошика" width="24" height="24" />
+                                <img src={checkIcon} alt="Мітка" className="product-block__bottom_check" width="20" height="20" /> 
                             </> :
-                            <img src={shopCartIcon} alt="Добавити у кошик" />}
+                            <img src={shopCartIcon} alt="Добавити у кошик" width="24" height="24" />}
                     </button>
                 </div>
             </div>

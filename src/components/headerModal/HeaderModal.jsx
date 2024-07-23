@@ -47,7 +47,7 @@ function HeaderModal ({onCloseAllModals, setState, state, elements, type, icon, 
             <div style={{position: 'relative'}}>
                 <button onClick={() => {onCloseAllModals(); setState(!state)}}>
                     <div className={`header__${type} ${state ? "accent" : ""}`}>
-                        <img src={icon} alt={type} />
+                        <img src={icon} alt={type}  width="25" height="25" />
                         <span className={`header__${type}_counter`}>{(selectedProducts && selectedProducts.length) || 0}</span>
                     </div>
                 </button>

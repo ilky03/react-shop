@@ -60,7 +60,7 @@ function MainPage() {
                         <ProductBlocks flag="recently"/>
                     </div>
                 </div>
-                <button className={`up-btn ${windowWidth <= 1024 ? '' : 'hide'}`} onClick={handleClickUpBtn}><img src={arrowUpIcon} alt="Стрілка догори" /></button>
+                <button className={`up-btn ${windowWidth <= 1024 ? '' : 'hide'}`} onClick={handleClickUpBtn}><img src={arrowUpIcon} alt="Стрілка догори" width="24" height="24" /></button>
             </main>
         </>
     )

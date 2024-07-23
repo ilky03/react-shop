@@ -121,7 +121,7 @@ function ProductBlocks({ flag, category, filters, sortBy, handleReloadGallery })
             {filteredProducts.slice(currentBlocksPosition[0], currentBlocksPosition[1]).map(prodData => (
                 <ProductBlock handleReloadGallery={handleReloadGallery} key={prodData.id} {...prodData} />
             ))}
-            <button className={`product-blocks__show ${areMoreBlocks ? '' : 'hide'}`} onClick={handleShowMore}>Показати ще <img src={arrowDownIcon} alt="Стрілка униз" /></button>
+            <button className={`product-blocks__show ${areMoreBlocks ? '' : 'hide'}`} onClick={handleShowMore}>Показати ще <img src={arrowDownIcon} alt="Стрілка униз" width="20" height="20" /></button>
         </div>
     );
 }

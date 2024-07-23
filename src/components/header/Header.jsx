@@ -105,7 +105,7 @@ function Header() {
                         <Link to="/"><p>HOUSE</p></Link>
                     </div>
             
-                    <button className="header__category-btn" onClick={() => {handleCloseAllModals(); setIsOpenCategories(!isOpenCategories)}}>
+                    <button className="header__category-btn" onClick={() => {handleCloseAllModals(); setIsOpenCategories(!isOpenCategories)}} aria-label="Категорії">
                         <div className="header__burger">
                             <span></span><span></span><span></span>
                         </div>
@@ -137,7 +137,8 @@ function Header() {
                             onClick={(e) => {e.preventDefault(); setShowSearchInput(!showSearchInput)}}
                             className={`header__search ${showSearchInput ? 'accent' : ''}`}
                             disabled={windowWidth > 1024}
-                        ><img src={searchIcon} alt="" /></button>
+                            aria-label="Пошук"
+                        ><img src={searchIcon} alt="Лупа" width="25" height="25" /></button>
                         {isActiveSearch && searchRes && searchRes.length !== 0 &&
                             <div className="modal-window">
                                 <h5>Результати пошуку</h5>
@@ -164,9 +165,9 @@ function Header() {
                         }
                     </form>
                     <div style={{position: 'relative'}}>
-                        <button onClick={() => {handleCloseAllModals(); setIsOpenProfile(!isOpenProfile)}}>
+                        <button onClick={() => {handleCloseAllModals(); setIsOpenProfile(!isOpenProfile)}} aria-label="Профіль">
                             <div className={`header__profile ${isOpenProfile ? 'accent' : ''}`} >
-                                <img src={profileIcon} alt="" />
+                                <img src={profileIcon} alt="Профіль"  width="25" height="25" />
                             </div>
                         </button>
                         {isOpenProfile && 
@@ -214,7 +215,7 @@ function Header() {
                     </div>
                     {windowWidth <= 1024 && 
                         <div className="swipe-tip">
-                            <img src={swipeIcon} alt="Свайп" />
+                            <img src={swipeIcon} alt="Свайп" width="24" height="24" />
                         </div> 
                     }
                 </div>

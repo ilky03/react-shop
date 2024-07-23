@@ -12,7 +12,7 @@ function CategoryCard({title, id, photoUrl}) {
         <Link to={`/category/${id}`}>
             <div className="categories__card">
                 {!isLoaded && <div className="skeleton-wrapper"><div className="skeleton"></div></div>}
-                <img className={`${isLoaded ? '' : 'hide'}`} onLoad={handleImageLoaded}  src={photoUrl} alt={title} />
+                <img className={`${isLoaded ? '' : 'hide'}`} onLoad={handleImageLoaded}  src={photoUrl} alt="Значок" />
                 <p>{title}</p>
             </div>
         </Link>
