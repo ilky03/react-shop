@@ -102,7 +102,7 @@ function Header() {
             <header>
                 <div className="container" ref={navRef}>
                     <div className="header__logo">
-                        <Link to="/"><p>HOUSE</p></Link>
+                        <Link to="/"><p>CAPSULA</p></Link>
                     </div>
             
                     <button className="header__category-btn" onClick={() => {handleCloseAllModals(); setIsOpenCategories(!isOpenCategories)}} aria-label="Категорії">

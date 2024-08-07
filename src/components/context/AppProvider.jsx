@@ -18,19 +18,23 @@ const AppProvider = ({ children }) => {
 
   const [profileData, setProfileData] = useState();
 
+  const [contacts, setContacts] = useState();
+
   const { makeQuery, isLoading, get, auth } = useDB();
 
   useEffect(() => {
     const fetchData = async () => {
-      const [bannersData, productsData, categoriesData] = await Promise.all([
+      const [bannersData, productsData, categoriesData, contactsData] = await Promise.all([
         makeQuery('banners/'),
-        makeQuery('/products'),
-        makeQuery('/categories')
+        makeQuery('products/'),
+        makeQuery('categories/'),
+        makeQuery('contacts/'),
       ]);
-      
+
       setBanners(bannersData);
       setProductsData(productsData);
       setCategories(categoriesData);
+      setContacts(contactsData[0]);
     };
   
     const handleAuthStateChanged = async (user) => {
@@ -99,7 +103,7 @@ const AppProvider = ({ children }) => {
   }
 
   return (
-    <AppContext.Provider value={{ productsData, wishlist, shoppingCart, banners, categories, windowWidth, profileData, setProfileData, handleItemToggle, clearShoppingCart, handleClickUpBtn, isLoading }}>
+    <AppContext.Provider value={{ productsData, wishlist, shoppingCart, banners, categories, windowWidth, profileData, contacts, setProfileData, handleItemToggle, clearShoppingCart, handleClickUpBtn, isLoading }}>
       {children}
     </AppContext.Provider>
   );

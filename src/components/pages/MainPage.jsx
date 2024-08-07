@@ -24,7 +24,7 @@ function MainPage() {
 
     return (
         <>
-            <SEO title="H O U S E" description="Тут колись буде класний опис" url={fullUrl} imageUrl={''} />
+            <SEO title="Capsula House - магазин товарів для дому" description="Тут колись буде класний опис" url={fullUrl} imageUrl={''} />
             <main>
                 <div className="container">
                     <div className="main__banner">

@@ -23,9 +23,9 @@ function App() {
                 <Route path='/product/:productID' element={<ProductPage />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
+            <Footer />
         </HelmetProvider>
         </AppProvider>
-        <Footer />
       </Router>
     </>
   );
