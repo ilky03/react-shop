@@ -10,7 +10,8 @@ import editIcon from '../../../sources/img/edit_thin.svg';
 import npLogo from '../../../sources/img/np_logo.png';
 import ukrpLogo from '../../../sources/img/ukrp_logo.png';
 
-function Modal({action, onClose, categories, handleChanged, products, orders, banners}) {
+
+function Modal({action, onClose, categories, handleChanged, products, orders, banners, contacts}) {
 
     const [showModal, setShowModal] = useState(false);
     const [parameters, setParameters] = useState();
@@ -445,6 +446,33 @@ function Modal({action, onClose, categories, handleChanged, products, orders, ba
                                 )
                             })}
                         </ul>
+                    </>
+                )
+            case 'contacts':
+                return (
+                    <>
+                        <h2>Зміна контактної інформації</h2>
+                        <form onSubmit={(e) => {
+                            e.preventDefault();
+                            const formData = new FormData(e.target);
+                            const data = Object.fromEntries(formData);
+                            update('contacts/socials', data);
+                            handleChanged('contacts/');
+                        }}>
+                            <label htmlFor="inst">Інстаграм</label>
+                            <input type="text" name="inst" id="inst" defaultValue={contacts && contacts.inst} />
+
+                            <label htmlFor="fb">Фейсбук</label>
+                            <input type="text" name="fb" id="fb" defaultValue={contacts && contacts.fb} />
+
+                            <label htmlFor="tg">Телеграм</label>
+                            <input type="text" name="tg" id="tg" defaultValue={contacts && contacts.tg} />
+
+                            <label htmlFor="phone">Номер служби підтримки</label>
+                            <input type="text" name="phone" id="phone" defaultValue={contacts && contacts.phone} />
+
+                            <button className='add-btn'>Зберегти зміни</button>
+                        </form>
                     </>
                 )
             default: 

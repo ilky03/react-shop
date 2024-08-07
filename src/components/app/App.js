@@ -23,7 +23,8 @@ function App() {
   const [changedProducts, setChangedProducts] = useState(false);
   const [changedOrders, setChangedOrders] = useState(false);
   const [changedBanners, setChangedBanners] = useState(false);
-
+  const [contacts, setContacts] = useState();
+  const [changedContacts, setChangedContacts] = useState(false);
   const { makeQuery } = useDB();
 
   useEffect(() => {
@@ -45,6 +46,11 @@ function App() {
     makeQuery('banners/').then(data => setBanners(data));
     //eslint-disable-next-line
   }, [changedBanners]);
+
+  useEffect(() => {
+    makeQuery('contacts/').then(data => setContacts(data[0]));
+    //eslint-disable-next-line
+  }, [changedContacts]);
  
   const handleCloseModal = () => {
     setShowModal(false);
@@ -59,6 +65,8 @@ function App() {
       setChangedOrders(!changedOrders);
     } else if (type.includes('banners/')) {
       setChangedBanners(!changedBanners);
+    } else if (type.includes('contacts/')) {
+      setChangedContacts(!changedContacts);
     }
   }
   
@@ -86,6 +94,7 @@ function App() {
               products={products} 
               orders={orders}
               banners={banners} 
+              contacts={contacts}
       />}
     </>
   );
@@ -139,10 +148,10 @@ const btnsData = [
   },
   {
     icon: starIcon,
-    title: "Модерація відгуків",
-    description: "Відгуки користувачів відображаються на сайті лише після модерації",
+    title: "Зміна контактної інформації",
+    description: "Зміна посилань на соцмережі та номеру служби підтримки",
     accent: true,
-    action: 'feedback'
+    action: 'contacts'
   },
   {
     icon: uploadIcon,
